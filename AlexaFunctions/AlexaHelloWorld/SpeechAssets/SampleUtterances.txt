@@ -1,0 +1,6 @@
+﻿HelloWorldIntent say hello
+HelloWorldIntent say hello world
+HelloWorldIntent Hello
+HelloWorldIntent say hi
+HelloWorldIntent hi
+HelloWorldIntent what's up
