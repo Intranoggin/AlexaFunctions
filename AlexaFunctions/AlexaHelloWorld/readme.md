@@ -1,11 +1,8 @@
-﻿# HttpTrigger - C<span>#</span>
+﻿# AlexaHelloWorld
+This project was created as a HttpTrigger - C<span>#</span> Azure Function project.
 
-The `HttpTrigger` makes it incredibly easy to have your functions executed via an HTTP call to your function.
 
 ## How it works
 
-When you call the function, be sure you checkout which security rules you apply. If you're using an apikey, you'll need to include that in your request.
-
-## Learn more
-
-<TODO> Documentation
+This is a simple Alexa Skill POC that when launched on the Echo says "What up, dude? Do you know how much Dad Rocks?" 
+I created it to learn how to create a Skill hosted in Azure Functions, and also to harrass my kids.
