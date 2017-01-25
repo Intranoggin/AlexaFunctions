@@ -1,0 +1,25 @@
+﻿{
+  "intents": [
+    {
+      "intent": "AskTeenageDaughterStatus"
+    },
+    {
+      "intent": "AskTeenageDaughterParticipation",
+      "slots": [
+        {
+          "name": "Activity",
+          "type": "ACTIVITIES"
+        }
+      ]
+    },
+    {
+      "intent": "AskTeenageDaughterOpinion",
+      "slots": [
+        {
+          "name": "Subject",
+          "type": "SUBJECTS"
+        }
+      ]
+    }
+  ]
+}

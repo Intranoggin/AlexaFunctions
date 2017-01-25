@@ -1,0 +1,13 @@
+﻿AskTeenageDaughterStatus What's up
+AskTeenageDaughterStatus How's it going
+AskTeenageDaughterStatus What's the word
+AskTeenageDaughterStatus what's going on
+AskTeenageDaughterStatus what are you doing
+AskTeenageDaughterStatus how was your day
+AskTeenageDaughterStatus how did you sleep
+AskTeenageDaughterStatus good morning
+AskTeenageDaughterStatus good night
+
+AskTeenageDaughterParticipation Do you want to {Activity}
+
+AskTeenageDaughterOpinion What do you think about {Subject}

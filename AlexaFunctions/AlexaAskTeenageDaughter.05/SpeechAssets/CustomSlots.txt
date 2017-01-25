@@ -1,0 +1,14 @@
+﻿ACTIVITIES
+Get Dressed
+Go to Bed
+Come eat dinner
+Do your homework
+
+
+SUBJECTS
+Math
+English
+Gym
+Lunch
+Dinner
+Shopping

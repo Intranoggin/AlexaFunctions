@@ -1,0 +1,39 @@
+﻿{
+  "intents": [
+    {
+      "intent": "AskTeenageDaughterParticipation",
+      "slots": [
+        {
+          "name": "Query",
+          "type": "QUERY"
+        },
+        {
+          "name": "Activity",
+          "type": "ACTIVITY"
+        }
+      ]
+    },
+    {
+      "intent": "AskTeenageDaughterOpinion",
+      "slots": [
+        {
+          "name": "Question",
+          "type": "QUESTION"
+        },
+        {
+          "name": "Subject",
+          "type": "SUBJECT"
+        }
+      ]
+    },
+    {
+      "intent": "AskTeenageDaughterStatus",
+      "slots": [
+        {
+          "name": "CatchAll",
+          "type": "CATCHALL"
+        }
+      ]
+    }
+  ]
+}
