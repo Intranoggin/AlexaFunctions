@@ -1,11 +1,9 @@
-﻿# HttpTrigger - C<span>#</span>
+﻿# Alexa Ask Teenage Daughter
 
-The `HttpTrigger` makes it incredibly easy to have your functions executed via an HTTP call to your function.
+This is the current verison of the Alexa Skill, Ask Teenage Daughter. 
 
-## How it works
+The skill is written in C# and hosted on Azure Functions. 
 
-When you call the function, be sure you checkout which security rules you apply. If you're using an apikey, you'll need to include that in your request.
+The creation of this skill is described on http://Intranoggin.com over several articles released beginning in February, 2017.
 
-## Learn more
 
-<TODO> Documentation
