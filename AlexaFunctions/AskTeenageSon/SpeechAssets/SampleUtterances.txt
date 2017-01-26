@@ -1,0 +1,8 @@
+﻿AskTeenageSonStatus {CatchAll}
+
+AskTeenageSonParticipation {Query} {Activity}
+
+AskTeenageSonOpinion {Question} {Subject}
+AskTeenageSonOpinion {Question} {Subject} was
+AskTeenageSonOpinion {Question} {Subject} is
+AskTeenageSonOpinion {Question} {Subject} feels
