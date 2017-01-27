@@ -1,0 +1,15 @@
+﻿Testing Instructions
+
+Short Skill Description
+Use Alexa to communicate with your teenage son even when he isn't home. How was class? Class sucks.
+
+Full Skill Description
+Sometimes my teenagers are away from home. When that happens I have nobody around to tell me just how terrible everything is. Some unfortunate people don't ever have a teenager around. How can they possibly know that life is terrible? The Teenage Son skill can help. 
+
+Example Phrases
+Alexa, ask Teenage Son how class was.
+Alexa, ask Teenage Son if he wants to see a movie.
+Alexa, tell Teenage Son go to bed.
+
+Keywords
+Teenage Son Attitude Boy Parent Humor Mom Dad Joke

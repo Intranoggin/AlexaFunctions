@@ -1,0 +1,15 @@
+﻿Testing Instructions
+
+Short Skill Description
+Use Alexa to communicate with your teenage daughter even when she isn't home. How was practice? Practice sucks.
+
+Full Skill Description
+Sometimes my teenagers are away from home. When that happens I have nobody around to tell me just how terrible everything is. Some unfortunate people don't ever have a teenager around. How can they possibly know life is terrible? The Teenage Daughter skill can help. 
+
+Example Phrases
+Alexa, ask Teenage Daughter how school was.
+Alexa, ask Teenage Daughter if she wants to see a movie.
+Alexa, tell Teenage Daughter Good Morning.
+
+Keywords
+Teenage Daughter Attitude Girl Parent Humor Mom Dad Joke
