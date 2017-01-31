@@ -3,7 +3,7 @@ using System.Net;
 
 public static async void Run(TimerInfo myTimer, TraceWriter log)
 {
-    //CI Test
+    //CI Test 2
     log.Info($"Keep Alive Timer: {DateTime.Now}");
     System.IO.Stream stream = null;
     WebClient wc = new WebClient();
