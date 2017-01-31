@@ -2,6 +2,7 @@
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
+    //CI Test
     //log.Info($"Request={req}");
 
     // Get request body
