@@ -12,5 +12,8 @@ This is the first version of the Ask Teenage Daughter skill and is a demonstrati
 ## AlexaAskTeenageDaughter
 The current version of this skill. The lessons I've learned along the way are chronicled on [Intranoggin.com](http://intranoggin.com "Blog")
 
-## Alexa Ask TeenageSon
+## AlexaAskTeenageSon
 The equal opportunity version of the AlexaAskTeenageDaughter skill
+
+## AlexaKeepAlive
+This is a simple timer trigger function that calls the http functions every 15 minutes. 

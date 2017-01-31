@@ -2,12 +2,16 @@
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
-    //CI Test
     //log.Info($"Request={req}");
 
     // Get request body
     dynamic data = await req.Content.ReadAsAsync<object>();
-
+    if (data == null)
+    {
+        log.Info($"Request={req}");
+        return null;
+    }
+    
     log.Info($"Content={data}");
     // Set name to query string or body data
     string intentName = data.request.intent.name;
