@@ -17,6 +17,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     string intentName = data.request.intent.name;
     log.Info($"intentName={intentName}");
 
+    string outputText = "You're being rediculous.";
     switch (intentName)
     {
         case "AskTeenageSonStatus":
@@ -29,13 +30,13 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
                     outputSpeech = new
                     {
                         type = "PlainText",
-                        text = "You're being rediculous."
+                        text = outputText
                     },
                     card = new
                     {
                         type = "Simple",
                         title = "Teenage Son Says",
-                        content = "You're being rediculous."
+                        content = outputText
                     },
                     shouldEndSession = true
                 }
@@ -43,7 +44,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             break;
         case "AskTeenageSonOpinion":
             string subject = data.request.intent.slots.Subject.value;
-            string outputText = $"{subject} sucks";
+            outputText = $"{subject} sucks";
 
 
             if (subject == "mom" || subject == "dad" || subject == "mother" || subject == "father")
@@ -71,7 +72,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             break;
         case "AskTeenageSonParticipation":
             string activity = data.request.intent.slots.Activity.value;
-            string outputText = $"{activity} sucks";
+            outputText = $"{activity} sucks";
 
             if (activity == "mom" || activity == "dad" || activity == "mother" || activity == "father")
                 outputText = $"{activity} is the best!";

@@ -16,6 +16,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     // Set name to query string or body data
     string intentName = data.request.intent.name;
     log.Info($"intentName={intentName}");
+    string outputText = "Growl";
 
     switch (intentName)
     {
@@ -29,13 +30,13 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
                     outputSpeech = new
                     {
                         type = "PlainText",
-                        text = "Growl"
+                        text = outputText
                     },
                     card = new
                     {
                         type = "Simple",
                         title = "Teenage Daughter Says",
-                        content = "Growl"
+                        content = outputText
                     },
                     shouldEndSession = true
                 }
@@ -43,7 +44,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             break;
         case "AskTeenageDaughterOpinion":
             string subject = data.request.intent.slots.Subject.value;
-            string outputText = $"{subject} sucks";
+            outputText = $"{subject} sucks";
 
 
             if (subject=="mom" || subject=="dad" || subject == "mother" || subject == "father")
@@ -71,7 +72,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             break;
         case "AskTeenageDaughterParticipation":
             string activity = data.request.intent.slots.Activity.value;
-            string outputText = $"{activity} sucks";
+            outputText = $"{activity} sucks";
 
 
             if (subactivityject == "mom" || activity == "dad" || activity == "mother" || activity == "father")
