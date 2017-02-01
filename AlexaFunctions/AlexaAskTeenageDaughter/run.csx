@@ -75,7 +75,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             outputText = $"{activity} sucks";
 
 
-            if (subactivityject == "mom" || activity == "dad" || activity == "mother" || activity == "father")
+            if (activity == "mom" || activity == "dad" || activity == "mother" || activity == "father")
                 outputText = $"{activity} is the best!";
             return req.CreateResponse(HttpStatusCode.OK, new
             {
