@@ -71,6 +71,11 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             break;
         case "AskTeenageSonParticipation":
             string activity = data.request.intent.slots.Activity.value;
+            string outputText = $"{activity} sucks";
+
+            if (activity == "mom" || activity == "dad" || activity == "mother" || activity == "father")
+                outputText = $"{activity} is the best!";
+
             return req.CreateResponse(HttpStatusCode.OK, new
             {
                 version = "1.0",
@@ -80,13 +85,13 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
                     outputSpeech = new
                     {
                         type = "PlainText",
-                        text = $"{activity} sucks"
+                        text = outputText
                     },
                     card = new
                     {
                         type = "Simple",
                         title = "Teenage Son Says",
-                        content = $"{activity} sucks"
+                        content = outputText
                     },
                     shouldEndSession = true
                 }
