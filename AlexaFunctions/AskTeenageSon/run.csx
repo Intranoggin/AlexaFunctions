@@ -1,17 +1,18 @@
 ﻿using System.Net;
 
-public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
+public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log, IAsyncCollector<string> alexaAskTeenageRequestQueue)
 {
-    //log.Info($"Request={req}");
+    log.Info($"Request={req}");
 
     // Get request body
     dynamic data = await req.Content.ReadAsAsync<object>();
+
     if (data == null)
     {
-        log.Info($"Request={req}");
         return null;
     }
-    
+    await alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(data));
+
     log.Info($"Content={data}");
     // Set name to query string or body data
     string intentName = data.request.intent.name;
