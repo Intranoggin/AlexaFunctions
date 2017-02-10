@@ -3,6 +3,7 @@
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log, IAsyncCollector<string> alexaAskTeenageRequestQueue)
 {
     log.Info($"Request={req}");
+    await alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(req));
 
     // Get request body
     dynamic data = await req.Content.ReadAsAsync<object>();

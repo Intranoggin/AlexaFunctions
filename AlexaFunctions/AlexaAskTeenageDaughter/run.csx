@@ -2,16 +2,19 @@
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log, IAsyncCollector<string> alexaAskTeenageRequestQueue)
 {
+    Task<dynamic> getDataTask = req.Content.ReadAsAsync<object>();
     log.Info($"Request={req}");
+    //no need to await these because we don't need to do anything with the return value.
+    alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(req));
 
     // Get request body
-    dynamic data = await req.Content.ReadAsAsync<object>();
+    dynamic data = await getDataTask;
 
     if (data == null)
     {
         return null;
     }
-    await alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(data));
+    alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(data));
 
 
     log.Info($"Content={data}");
