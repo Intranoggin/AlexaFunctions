@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 using System.Text;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-//using Org.BouncyCastle.X509;
-//using Org.BouncyCastle.Security.Certificates;
 using Microsoft.Azure.WebJobs.Host;
 
 namespace AlexaFunctions.RequestValidation
@@ -235,39 +229,6 @@ namespace AlexaFunctions.RequestValidation
 
                 return rsa.VerifyHash(data,CryptoConfig.MapNameToOID("SHA1"), signature);
             }
-            return true;
-            //var publicKey = (Org.BouncyCastle.Crypto.Parameters.RsaKeyParameters)cert.GetPublicKey();
-            //log.Info("line X-F");
-            //var signer = Org.BouncyCastle.Security.SignerUtilities.GetSigner(ControlConstants.SIGNATURE_ALGORITHM);
-            //log.Info("line X-G");
-            //signer.Init(false, publicKey);
-            //log.Info("line X-H");
-            //signer.BlockUpdate(serializedSpeechletRequest, 0, serializedSpeechletRequest.Length);
-            //log.Info("line X-I");
-            //return signer.VerifySignature(signature);
         }
-
-
-    
-        //private static bool CheckCertSubjectNames(X509Certificate2 cert)
-        //{
-        //    bool found = false;
-            
-        //    ArrayList subjectNamesList = (ArrayList)cert.GetSubjectAlternativeNames();
-        //    for (int i = 0; i < subjectNamesList.Count; i++)
-        //    {
-        //        ArrayList subjectNames = (ArrayList)subjectNamesList[i];
-        //        for (int j = 0; j < subjectNames.Count; j++)
-        //        {
-        //            if (subjectNames[j] is String && subjectNames[j].Equals(ControlConstants.ECHO_API_DOMAIN_NAME))
-        //            {
-        //                found = true;
-        //                break;
-        //            }
-        //        }
-        //    }
-
-        //    return found;
-        //}
     }
 }
