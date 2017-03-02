@@ -9,11 +9,9 @@ using Newtonsoft.Json.Linq;
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log, IAsyncCollector<string> alexaAskTeenageRequestQueue)
 {
-    log.Info("line 8-");
     log.Info($"Request={req}");
 
-
-    log.Info("line 11");
+    
     string requestContent = await req.Content.ReadAsStringAsync();//ReadAsAsync<JObject>(); 
 
     //JObject reqContentOb = JsonConvert.DeserializeObject<JObject>(requestContent, new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore });
@@ -21,24 +19,18 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
 
     Task <ValidationResult> getValidationResult = AlexaFunctions.RequestValidation.RequestValidator.ValidateRequest(req.Headers, requestContent, log);
-    log.Info("line 13");
     //no need to await these because nothing depends on the return value.
     alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(req));
-    log.Info("line 16");
-
+    
     ValidationResult validationResult = await getValidationResult;
-    log.Info("line 19");
     if (validationResult != ValidationResult.OK)
     {
-        log.Info("line 22");
         log.Info($"validationResult={validationResult.ToString()}");
-        log.Info("line 24");
         return new HttpResponseMessage(HttpStatusCode.BadRequest)
         {
             ReasonPhrase = validationResult.ToString()
         };
     }
-    log.Info("line 30");
     //// Get request body
     ////dynamic data = await getDataTask;
     ////Task<dynamic> getDataTask = req.Content.ReadAsAsync<object>();
@@ -47,11 +39,8 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
 
     log.Info($"requestContent={requestContent.ToString()}");
-    log.Info("line 34");
     alexaAskTeenageRequestQueue.AddAsync(requestContent.ToString());
-    log.Info("line 36");
     log.Info($"reqContentOb={reqContentOb.ToString()}");
-    log.Info("line 37");
     // Set name to query string or body data
     string intentName = (string)reqContentOb["request"]["intent"]["name"];// requestContent.Value<string>("intent");
     log.Info($"intentName={intentName}");
@@ -60,7 +49,6 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     switch (intentName)
     {
         case "AskTeenageDaughterStatus":
-            log.Info("line 38");
             return req.CreateResponse(HttpStatusCode.OK, new
             {
                 version = "1.0",

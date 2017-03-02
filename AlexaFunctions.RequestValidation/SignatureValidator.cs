@@ -58,15 +58,11 @@ namespace AlexaFunctions.RequestValidation
         public static bool VerifyRequestSignature(
             string requestData, string expectedSignature, string certChainUrl, TraceWriter log)
         {
-            log.Info("line VS-A");
             string certCacheKey = _getCertCacheKey(certChainUrl);
-            log.Info("line VS-B");
             X509Certificate2 cert = MemoryCache.Default.Get(certCacheKey) as X509Certificate2;
-            log.Info("line VS-C");
             if (cert == null ||
                 !CheckRequestSignature(requestData, expectedSignature, cert,log))
             {
-                log.Info("line VS-D");
                 // download the cert 
                 // if we don't have it in cache or
                 // if we have it but it's stale because the current request was signed with a newer cert
@@ -75,13 +71,9 @@ namespace AlexaFunctions.RequestValidation
                 log.Info($"certChainUrl={certChainUrl.ToString()}");
                 cert = RetrieveAndVerifyCertificate(certChainUrl,log);
                 log.Info($"cert={cert.ToString()}");
-                log.Info("line VS-E");
                 if (cert == null) return false;
-                log.Info("line VS-F");
                 MemoryCache.Default.Set(certCacheKey, cert, _policy);
-                log.Info("line VS-G");
             }
-            log.Info("line VS-H");
             return CheckRequestSignature(requestData, expectedSignature, cert,log);
         }
 
@@ -117,22 +109,16 @@ namespace AlexaFunctions.RequestValidation
         {
             // making requests to externally-supplied URLs is an open invitation to DoS
             // so restrict host to an Alexa controlled subdomain/path
-            log.Info("RVC 1");
             if (!VerifyCertificateUrl(certChainUrl)) return null;
-            log.Info("RVC 2");
             using (var webClient = new WebClient())
             {
                 string certContent = webClient.DownloadString(certChainUrl);
-                log.Info($"RVC 3 Cert Content={certContent}");
-                
-
+        
                 //var pemReader = new Org.BouncyCastle.OpenSsl.PemReader(new StringReader(certContent));
                 var cert = new X509Certificate2(Encoding.UTF8.GetBytes(certContent));
-                log.Info("RVC 4");
                 var effectiveDate = DateTime.MinValue;
                 var expiryDate = DateTime.MinValue;
 
-                log.Info("RVC 5");
                 if (!(
                 DateTime.TryParse(cert.GetEffectiveDateString(), out effectiveDate) &&
                 effectiveDate < DateTime.Now &&
@@ -141,11 +127,9 @@ namespace AlexaFunctions.RequestValidation
                 ))
                 {
 
-                    log.Info("RVC 6");
                     throw new Exception("Certificate Error");
                 }
 
-                log.Info("RVC 7");
                 return cert;
             }
 
@@ -230,35 +214,27 @@ namespace AlexaFunctions.RequestValidation
         public static bool CheckRequestSignature(
             string requestData, string expectedSignature, X509Certificate2 cert, TraceWriter log)
         {
-            log.Info("line X-A");
             byte[] signature = null;
             try
             {
-                log.Info("line X-B");
                 signature = Convert.FromBase64String(expectedSignature);
                 log.Info($"expectedSignature={expectedSignature}");
                 log.Info($"expectedSig={signature.ToString()}");
-                log.Info("line X-C");
             }
             catch (FormatException)
             {
-                log.Info("line X-D");
                 return false;
             }
 
             using (var sha1 = new SHA1Managed())
             {
-                log.Info("line X-E");
                 //var body = null;
                 var data = sha1.ComputeHash(Encoding.UTF8.GetBytes(requestData));
 
-                log.Info("line X-F");
                 var rsa = (RSACryptoServiceProvider)cert.PublicKey.Key;
 
-                log.Info("line X-G");
                 return rsa.VerifyHash(data,CryptoConfig.MapNameToOID("SHA1"), signature);
             }
-                log.Info("line X-H");
             return true;
             //var publicKey = (Org.BouncyCastle.Crypto.Parameters.RsaKeyParameters)cert.GetPublicKey();
             //log.Info("line X-F");
