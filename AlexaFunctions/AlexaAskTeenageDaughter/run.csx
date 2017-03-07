@@ -31,12 +31,6 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
             ReasonPhrase = validationResult.ToString()
         };
     }
-    //// Get request body
-    ////dynamic data = await getDataTask;
-    ////Task<dynamic> getDataTask = req.Content.ReadAsAsync<object>();
-
-    ////dynamic data = await getDataTask;
-
 
     log.Info($"requestContent={requestContent.ToString()}");
     alexaAskTeenageRequestQueue.AddAsync(requestContent.ToString());

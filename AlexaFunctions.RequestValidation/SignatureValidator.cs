@@ -107,8 +107,7 @@ namespace AlexaFunctions.RequestValidation
             using (var webClient = new WebClient())
             {
                 string certContent = webClient.DownloadString(certChainUrl);
-        
-                //var pemReader = new Org.BouncyCastle.OpenSsl.PemReader(new StringReader(certContent));
+                        //var pemReader = new Org.BouncyCastle.OpenSsl.PemReader(new StringReader(certContent));
                 var cert = new X509Certificate2(Encoding.UTF8.GetBytes(certContent));
                 var effectiveDate = DateTime.MinValue;
                 var expiryDate = DateTime.MinValue;
@@ -126,23 +125,6 @@ namespace AlexaFunctions.RequestValidation
 
                 return cert;
             }
-
-                //var cert = (X509Certificate)pemReader.ReadObject();
-            //    try
-            //    {
-            //        cert.CheckValidity();
-            //        if (!CheckCertSubjectNames(cert)) return null;
-            //    }
-            //    catch (CertificateExpiredException)
-            //    {
-            //        return null;
-            //    }
-            //    catch (CertificateNotYetValidException)
-            //    {
-            //        return null;
-            //    }
-            
-            //return cert;
         }
 
 
@@ -173,34 +155,6 @@ namespace AlexaFunctions.RequestValidation
 
                 return cert;
             }
-
-
-            // making requests to externally-supplied URLs is an open invitation to DoS
-            // so restrict host to an Alexa controlled subdomain/path
-            //if (!VerifyCertificateUrl(certChainUrl)) return null;
-
-            //var httpClient = new HttpClient();
-            //var httpResponse = await httpClient.GetAsync(certChainUrl);
-            //var content = await httpResponse.Content.ReadAsStringAsync();
-            //if (String.IsNullOrEmpty(content)) return null;
-
-            //var pemReader = new Org.BouncyCastle.OpenSsl.PemReader(new StringReader(content));
-            //var cert = (X509Certificate)pemReader.ReadObject();
-            //try
-            //{
-            //    cert.CheckValidity();
-            //    if (!CheckCertSubjectNames(cert)) return null;
-            //}
-            //catch (CertificateExpiredException)
-            //{
-            //    return null;
-            //}
-            //catch (CertificateNotYetValidException)
-            //{
-            //    return null;
-            //}
-
-            //return cert;
         }
 
 
