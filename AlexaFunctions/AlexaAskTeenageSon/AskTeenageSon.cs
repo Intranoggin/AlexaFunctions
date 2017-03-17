@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using AlexaFunctions.RequestValidation;
+using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace AlexaFunctions
 {
@@ -12,20 +15,30 @@ namespace AlexaFunctions
         public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log, IAsyncCollector<string> alexaAskTeenageRequestQueue)
         {
             log.Info($"Request={req}");
-            await alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(req));
 
-            // Get request body
-            dynamic data = await req.Content.ReadAsAsync<object>();
+            string requestContent = await req.Content.ReadAsStringAsync();
 
-            if (data == null)
+            JObject reqContentOb = JsonConvert.DeserializeObject<JObject>(requestContent);
+
+            Task<ValidationResult> getValidationResult = AlexaFunctions.RequestValidation.RequestValidator.ValidateRequest(req.Headers, requestContent, log);
+            //no need to await these because nothing depends on the return value.
+            alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(req));
+
+            ValidationResult validationResult = await getValidationResult;
+            if (validationResult != ValidationResult.OK)
             {
-                return null;
+                log.Info($"validationResult={validationResult.ToString()}");
+                return new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    ReasonPhrase = validationResult.ToString()
+                };
             }
-            await alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(data));
 
-            log.Info($"Content={data}");
+            log.Info($"requestContent={requestContent.ToString()}");
+            alexaAskTeenageRequestQueue.AddAsync(requestContent.ToString());
+            log.Info($"reqContentOb={reqContentOb.ToString()}");
             // Set name to query string or body data
-            string intentName = data.request.intent.name;
+            string intentName = (string)reqContentOb["request"]["intent"]["name"];
             log.Info($"intentName={intentName}");
 
             string outputText = "You're being rediculous.";
@@ -34,7 +47,7 @@ namespace AlexaFunctions
                 case "AskTeenageSonStatus":
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -53,7 +66,7 @@ namespace AlexaFunctions
                         }
                     });
                 case "AskTeenageSonOpinion":
-                    string subject = data.request.intent.slots.Subject.value;
+                    string subject = (string)reqContentOb["request"]["intent"]["slots"]["Subject"]["value"];
                     outputText = $"{subject} sucks";
 
 
@@ -61,7 +74,7 @@ namespace AlexaFunctions
                         outputText = $"{subject} rules!";
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -80,7 +93,7 @@ namespace AlexaFunctions
                         }
                     });
                 case "AskTeenageSonParticipation":
-                    string activity = data.request.intent.slots.Activity.value;
+                    string activity = (string)reqContentOb["request"]["intent"]["slots"]["Activity"]["value"];
                     outputText = $"{activity} sucks";
 
                     if (activity == "mom" || activity == "dad" || activity == "mother" || activity == "father")
@@ -88,7 +101,7 @@ namespace AlexaFunctions
 
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -109,7 +122,7 @@ namespace AlexaFunctions
                 default:
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {

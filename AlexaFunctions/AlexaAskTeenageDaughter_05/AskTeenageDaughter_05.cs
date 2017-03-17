@@ -27,7 +27,7 @@ namespace AlexaFunctions
                 case "AskTeenageDaughterStatus":
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -49,7 +49,7 @@ namespace AlexaFunctions
                     string subject = data.request.intent.slots.Subject.value;
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -71,7 +71,7 @@ namespace AlexaFunctions
                     string activity = data.request.intent.slots.Activity.value;
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -92,7 +92,7 @@ namespace AlexaFunctions
                 default:
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {

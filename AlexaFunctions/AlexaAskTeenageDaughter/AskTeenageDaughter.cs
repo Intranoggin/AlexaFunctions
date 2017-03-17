@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Net;
 using System.Net.Http;
 using AlexaFunctions.RequestValidation;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
@@ -20,12 +16,10 @@ namespace AlexaFunctions
         {
             log.Info($"Request={req}");
 
-
-            string requestContent = await req.Content.ReadAsStringAsync();//ReadAsAsync<JObject>(); 
+            string requestContent = await req.Content.ReadAsStringAsync(); 
 
             JObject reqContentOb = JsonConvert.DeserializeObject<JObject>(requestContent);
-
-
+            
             Task<ValidationResult> getValidationResult = AlexaFunctions.RequestValidation.RequestValidator.ValidateRequest(req.Headers, requestContent, log);
             //no need to await these because nothing depends on the return value.
             alexaAskTeenageRequestQueue.AddAsync(Convert.ToString(req));
@@ -44,7 +38,7 @@ namespace AlexaFunctions
             alexaAskTeenageRequestQueue.AddAsync(requestContent.ToString());
             log.Info($"reqContentOb={reqContentOb.ToString()}");
             // Set name to query string or body data
-            string intentName = (string)reqContentOb["request"]["intent"]["name"];// requestContent.Value<string>("intent");
+            string intentName = (string)reqContentOb["request"]["intent"]["name"];
             log.Info($"intentName={intentName}");
             string outputText = "Growl";
 
@@ -53,7 +47,7 @@ namespace AlexaFunctions
                 case "AskTeenageDaughterStatus":
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -80,7 +74,7 @@ namespace AlexaFunctions
                         outputText = $"{subject} rules!";
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -107,7 +101,7 @@ namespace AlexaFunctions
                         outputText = $"{activity} is the best!";
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {
@@ -128,7 +122,7 @@ namespace AlexaFunctions
                 default:
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
-                        version = "1.0",
+                        version = "1.1",
                         sessionAttributes = new { },
                         response = new
                         {

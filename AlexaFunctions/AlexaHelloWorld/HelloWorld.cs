@@ -28,7 +28,7 @@ namespace AlexaFunctions
             if (name == null)
                 return req.CreateResponse(HttpStatusCode.OK, new
                 {
-                    version = "1.0",
+                    version = "1.1",
                     sessionAttributes = new { },
                     response = new
                     {
@@ -49,7 +49,7 @@ namespace AlexaFunctions
             else
                 return req.CreateResponse(HttpStatusCode.OK, new
                 {
-                    version = "1.0",
+                    version = "1.1",
                     sessionAttributes = new { },
                     response = new
                     {
