@@ -1,5 +1,7 @@
 ﻿{
   "disabled": false,
+  "scriptFile": "..\\bin\\AlexaFunctions.dll",
+  "entryPoint": "AlexaFunctions.AskTeenageDaughter.Run",
   "bindings": [
     {
       "authLevel": "anonymous",

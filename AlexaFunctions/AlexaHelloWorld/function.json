@@ -1,8 +1,10 @@
 ﻿{
   "disabled": false,
+  "scriptFile": "..\\bin\\AlexaFunctions.dll",
+  "entryPoint": "AlexaFunctions.HelloWorld.Run",
   "bindings": [
     {
-      "authLevel": "function",
+      "authLevel": "anonymous",
       "name": "req",
       "type": "httpTrigger",
       "direction": "in"

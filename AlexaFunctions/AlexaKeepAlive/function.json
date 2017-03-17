@@ -1,11 +1,13 @@
 ﻿{
   "disabled": false,
+  "scriptFile": "..\\bin\\AlexaFunctions.dll",
+  "entryPoint": "AlexaFunctions.KeepAlive.Run",
   "bindings": [
     {
       "name": "myTimer",
       "type": "timerTrigger",
       "direction": "in",
-      "schedule": "0 */10 * * * *"
+      "schedule": "0 */5 * * * *"
     }
   ]
 }
