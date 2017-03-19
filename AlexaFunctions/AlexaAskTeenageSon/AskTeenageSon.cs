@@ -37,6 +37,31 @@ namespace AlexaFunctions
             log.Info($"requestContent={requestContent.ToString()}");
             alexaAskTeenageRequestQueue.AddAsync(requestContent.ToString());
             log.Info($"reqContentOb={reqContentOb.ToString()}");
+
+            string intentType = (string)reqContentOb["request"]["type"];
+            if (intentType == "LaunchRequest")
+            {
+                return req.CreateResponse(HttpStatusCode.OK, new
+                {
+                    version = "1.1",
+                    sessionAttributes = new { },
+                    response = new
+                    {
+                        outputSpeech = new
+                        {
+                            type = "PlainText",
+                            text = "Say something like\nTell teenage son good morning.\nAsk teenage son if he wants to go to soccer.\n Ask teenage son what he thinks of movies"
+                        },
+                        card = new
+                        {
+                            type = "Simple",
+                            title = "Teenage Son Says",
+                            content = "Say something like\nTell teenage son good morning.\nAsk teenage son if he wants to go to soccer.\n Ask teenage son what he thinks of movies"
+                        },
+                        shouldEndSession = true
+                    }
+                });
+            }
             // Set name to query string or body data
             string intentName = (string)reqContentOb["request"]["intent"]["name"];
             log.Info($"intentName={intentName}");
@@ -44,27 +69,6 @@ namespace AlexaFunctions
             string outputText = "You're being rediculous.";
             switch (intentName)
             {
-                case "AskTeenageSonStatus":
-                    return req.CreateResponse(HttpStatusCode.OK, new
-                    {
-                        version = "1.1",
-                        sessionAttributes = new { },
-                        response = new
-                        {
-                            outputSpeech = new
-                            {
-                                type = "PlainText",
-                                text = outputText
-                            },
-                            card = new
-                            {
-                                type = "Simple",
-                                title = "Teenage Son Says",
-                                content = outputText
-                            },
-                            shouldEndSession = true
-                        }
-                    });
                 case "AskTeenageSonOpinion":
                     string subject = (string)reqContentOb["request"]["intent"]["slots"]["Subject"]["value"];
                     outputText = $"{subject} sucks";
@@ -119,7 +123,7 @@ namespace AlexaFunctions
                             shouldEndSession = true
                         }
                     });
-                default:
+                default: //should be case "AskTeenageSonStatus":
                     return req.CreateResponse(HttpStatusCode.OK, new
                     {
                         version = "1.1",
@@ -129,13 +133,13 @@ namespace AlexaFunctions
                             outputSpeech = new
                             {
                                 type = "PlainText",
-                                text = "Say something like\nTell teenage son good morning.\nAsk teenage son if he wants to go to soccer.\n Ask teenage son what he thinks of movies"
+                                text = outputText
                             },
                             card = new
                             {
                                 type = "Simple",
                                 title = "Teenage Son Says",
-                                content = "Say something like\nTell teenage son good morning.\nAsk teenage son if he wants to go to soccer.\n Ask teenage son what he thinks of movies"
+                                content = outputText
                             },
                             shouldEndSession = true
                         }
