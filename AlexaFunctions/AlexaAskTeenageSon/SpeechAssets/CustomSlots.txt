@@ -11,26 +11,52 @@ If he wants to go
 If he wants to eat
 If he wants to do
 If he wants to be
+Do you want
+Do you want to
+Do you want to go for a
+Do you want to go for an
+Do you want to eat a
+Do you want to eat an
+Do you want to be a
+Do you want to be an
+Do you want to go
+Do you want to eat
+Do you want to do
+Do you want to be
 come eat
+come watch
+come see
 to go
 to do
 to be
+to see
+to watch
 go
 do
 be
 eat
+watch
+see
 
 ACTIVITY
 Dressed
 Bed
-dinner
-homework
+Dinner
+Homework
+Soccer
+Shopping
+Baseball
 
 
 QUESTION
 What he thinks about
+What he thinks of
 What he wants for
 What he likes
+What do you think about
+What do you think of
+What do you want for
+Do you like
 How was
 How her
 How
@@ -46,6 +72,10 @@ Shopping
 Class
 School
 Practice
+Movie
+This
+That
+Movies
 
 
 CATCHALL

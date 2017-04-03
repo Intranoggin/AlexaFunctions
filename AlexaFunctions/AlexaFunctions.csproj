@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AlexaSkillsKit, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AlexaSkillsKit.NET.1.5.1\lib\net45\AlexaSkillsKit.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.2.0.4\lib\net45\Microsoft.Azure.KeyVault.Core.dll</HintPath>
     </Reference>
@@ -180,17 +186,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlexaAskTeenageDaughter\AskTeenageDaughter.cs" />
+    <Compile Include="AlexaAskTeenageDaughter\AskTeenageDaughterSpeechlet.cs" />
     <Compile Include="AlexaAskTeenageDaughter_05\AskTeenageDaughter_05.cs" />
     <Compile Include="AlexaAskTeenageSon\AskTeenageSon.cs" />
+    <Compile Include="AlexaAskTeenageSon\AskTeenageSonSpeechlet.cs" />
     <Compile Include="AlexaHelloWorld\HelloWorld.cs" />
     <Compile Include="AlexaKeepAlive\KeepAlive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AlexaFunctions.RequestValidation\AlexaFunctions.RequestValidation.csproj">
-      <Project>{02067482-4472-4cf7-b0da-b88b075e42ed}</Project>
-      <Name>AlexaFunctions.RequestValidation</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
