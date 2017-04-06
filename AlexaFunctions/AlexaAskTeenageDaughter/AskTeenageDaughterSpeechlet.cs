@@ -99,11 +99,11 @@ namespace AlexaFunctions
         {
             // Create the Simple card content.
             SimpleCard card = new SimpleCard();
-            card.Title = String.Format("SessionSpeechlet - {0}", title);            
-            card.Content = String.Format("SessionSpeechlet - {0}", output);
+            card.Title = title;            
+            card.Content = output;
 
             // Create the plain text output.
-            PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+            PlainTextOutputSpeech speech = new PlainTextOutputSpeech();            
             speech.Text = output;
 
             // Create the speechlet response.

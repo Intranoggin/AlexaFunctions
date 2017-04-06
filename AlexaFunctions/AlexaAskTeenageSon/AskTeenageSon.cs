@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
+using AlexaSkillsKit;
 
 namespace AlexaFunctions
 {
@@ -10,9 +11,12 @@ namespace AlexaFunctions
         public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log, IAsyncCollector<string> alexaAskTeenageRequestQueue)
         {
             log.Info($"Request={req}");
-            AskTeenageSonSpeechlet speechlet = new AskTeenageSonSpeechlet(log, alexaAskTeenageRequestQueue);
+            var speechlet = new AskTeenageSonSpeechlet(log, alexaAskTeenageRequestQueue);
+            var getResponse = await speechlet.GetResponseAsync(req);
 
-            return await speechlet.GetResponseAsync(req);
+            var queueObject = $"{{[Request:{{{HttpHelpers.ToLogString(req)}}},Response:{{{HttpHelpers.ToLogString(getResponse)}}}]}}";
+            await alexaAskTeenageRequestQueue.AddAsync(queueObject);
+            return getResponse;
         }
 
     }
