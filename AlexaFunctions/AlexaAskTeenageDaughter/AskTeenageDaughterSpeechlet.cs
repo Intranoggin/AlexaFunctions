@@ -115,13 +115,17 @@ namespace AlexaFunctions
         }
 
         private async Task<SpeechletResponse> BuildAskTeenageDaughterOpinionResponseAsync(Intent intent, Session session)
-        {
-            string subject = intent.Slots["Subject"].Value;
-            string speechOutput = (PROTECTEDWORDS.Contains(subject)) ?
-                $"{subject} rules." :
-                $"{subject} sucks.";
-            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
-
+        {            
+            if (string.IsNullOrEmpty(intent.Slots["Subject"].Value))
+                return await BuildSpeechletResponseAsync(intent.Name, intent.Slots["Question"].Value, false);
+            else
+            {
+                string subject = intent.Slots["Subject"].Value;
+                string speechOutput = (PROTECTEDWORDS.Contains(subject)) ?
+                    $"{subject} rules." :
+                    $"{subject} sucks.";
+                return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
+            }
         }
         private async Task<SpeechletResponse> BuildAskTeenageDaughterParticipationResponseAsync(Intent intent, Session session)
         {
@@ -135,7 +139,6 @@ namespace AlexaFunctions
         {
             string speechOutput = "Growl";
             return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
-
         }
     }
 #endregion
