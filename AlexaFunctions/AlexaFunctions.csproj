@@ -139,11 +139,8 @@
   <ItemGroup>
     <Content Include="AlexaAskTeenager\DaughterSpeechAssets\108icon.png" />
     <Content Include="AlexaAskTeenager\DaughterSpeechAssets\512icon.png" />
-    <Content Include="AlexaAskTeenager\DaughterSpeechAssets\CustomSlots.txt" />
     <Content Include="AlexaAskTeenager\DaughterSpeechAssets\PublishingInfo.txt" />
-    <Content Include="AlexaAskTeenager\DaughterSpeechAssets\SampleUtterances.txt" />
     <Content Include="AlexaAskTeenager\CommonSpeechAssets\CustomSlots.txt" />
-    <Content Include="AlexaAskTeenager\CommonSpeechAssets\PublishingInfo.txt" />
     <Content Include="AlexaAskTeenager\CommonSpeechAssets\SampleUtterances.txt" />
     <Content Include="AlexaAskTeenageDaughter_09\SpeechAssets\108icon.png" />
     <Content Include="AlexaAskTeenageDaughter_09\SpeechAssets\512icon.png" />
@@ -154,9 +151,7 @@
     <Content Include="AlexaAskTeenageDaughter_05\SpeechAssets\SampleUtterances.txt" />
     <Content Include="AlexaAskTeenager\SonSpeechAssets\108icon.png" />
     <Content Include="AlexaAskTeenager\SonSpeechAssets\512icon.png" />
-    <Content Include="AlexaAskTeenager\SonSpeechAssets\CustomSlots.txt" />
     <Content Include="AlexaAskTeenager\SonSpeechAssets\PublishingInfo.txt" />
-    <Content Include="AlexaAskTeenager\SonSpeechAssets\SampleUtterances.txt" />
     <Content Include="AlexaHelloWorld\SpeechAssets\SampleUtterances.txt" />
     <Content Include="AlexaAskTeenageSon_09\SpeechAssets\108icon.png" />
     <Content Include="AlexaAskTeenageSon_09\SpeechAssets\512icon.png" />
@@ -189,8 +184,6 @@
     <Content Include="AlexaAskTeenager\project.json" />
     <Content Include="AlexaAskTeenager\readme.md" />
     <Content Include="AlexaAskTeenager\CommonSpeechAssets\IntentSchema.json" />
-    <Content Include="AlexaAskTeenager\DaughterSpeechAssets\IntentSchema.json" />
-    <Content Include="AlexaAskTeenager\SonSpeechAssets\IntentSchema.json" />
     <None Include="Properties\PublishProfiles\IntranogginAlexaDevApp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\IntranogginAlexaDevApp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">

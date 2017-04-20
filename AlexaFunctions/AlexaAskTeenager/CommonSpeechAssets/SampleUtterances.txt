@@ -1,8 +1,8 @@
-﻿AskTeenageDaughterStatus {CatchAll}
+﻿AskTeenagerStatus {CatchAll}
 
-AskTeenageDaughterParticipation {Query} {Activity}
+AskTeenagerParticipation {Query} {Activity}
 
-AskTeenageDaughterOpinion {Question} {Subject}
-AskTeenageDaughterOpinion {Question} {Subject} was
-AskTeenageDaughterOpinion {Question} {Subject} is
-AskTeenageDaughterOpinion {Question} {Subject} feels
+AskTeenagerOpinion {Question} {Subject}
+AskTeenagerOpinion {Question} {Subject} was
+AskTeenagerOpinion {Question} {Subject} is
+AskTeenagerOpinion {Question} {Subject} feels
