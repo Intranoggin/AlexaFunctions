@@ -1,0 +1,8 @@
+﻿AskTeenageDaughterStatus {CatchAll}
+
+AskTeenageDaughterParticipation {Query} {Activity}
+
+AskTeenageDaughterOpinion {Question} {Subject}
+AskTeenageDaughterOpinion {Question} {Subject} was
+AskTeenageDaughterOpinion {Question} {Subject} is
+AskTeenageDaughterOpinion {Question} {Subject} feels

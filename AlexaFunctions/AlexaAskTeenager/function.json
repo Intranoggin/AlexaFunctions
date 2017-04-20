@@ -1,0 +1,25 @@
+﻿{
+  "disabled": false,
+  "scriptFile": "..\\bin\\AlexaFunctions.dll",
+  "entryPoint": "AlexaFunctions.AskTeenageDaughter.Run",
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "name": "req",
+      "type": "httpTrigger",
+      "direction": "in"
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "queue",
+      "name": "alexaAskTeenageRequestQueue",
+      "queueName": "alexaaskteenagerequestqueue",
+      "connection": "intranogginalexastorageaccount",
+      "direction": "out"
+    }
+  ]
+}
