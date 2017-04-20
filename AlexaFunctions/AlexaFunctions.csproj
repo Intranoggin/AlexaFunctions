@@ -197,8 +197,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlexaAskTeenager\AskTeenageDaughter.cs" />
-    <Compile Include="AlexaAskTeenager\AskTeenageDaughterSpeechlet.cs" />
+    <Compile Include="AlexaAskTeenager\AskTeenager.cs" />
+    <Compile Include="AlexaAskTeenager\AskTeenagerSpeechlet.cs" />
     <Compile Include="AlexaAskTeenageDaughter_09\AskTeenageDaughter.cs" />
     <Compile Include="AlexaAskTeenageDaughter_09\AskTeenageDaughterSpeechlet.cs" />
     <Compile Include="AlexaAskTeenageDaughter_05\AskTeenageDaughter_05.cs" />

@@ -1,10 +1,10 @@
 ﻿{
   "disabled": false,
   "scriptFile": "..\\bin\\AlexaFunctions.dll",
-  "entryPoint": "AlexaFunctions.AskTeenageDaughter.Run",
+  "entryPoint": "AlexaFunctions.AskTeenager.Run",
   "bindings": [
     {
-      "authLevel": "anonymous",
+      "authLevel": "function",
       "name": "req",
       "type": "httpTrigger",
       "direction": "in"
