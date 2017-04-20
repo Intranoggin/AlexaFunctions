@@ -1,6 +1,15 @@
 ﻿{
   "intents": [
     {
+      "intent": "AMAZON.CancelIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
       "intent": "AskTeenageDaughterParticipation",
       "slots": [
         {

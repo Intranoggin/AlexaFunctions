@@ -8,7 +8,7 @@ Sometimes my teenagers are away from home. When that happens I have nobody aroun
 
 Example Phrases
 Alexa, ask Teenage Son how class was.
-Alexa, ask Teenage Son if he wants to see a movie.
+Alexa, open Teenage Son.
 Alexa, tell Teenage Son go to bed.
 
 Keywords

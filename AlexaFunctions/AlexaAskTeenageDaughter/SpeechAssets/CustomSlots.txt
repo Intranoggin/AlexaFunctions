@@ -3,6 +3,7 @@ If she wants
 If she wants to
 If she wants to go for a
 If she wants to go for an
+If she wants to see a
 If she wants to eat a
 If she wants to eat an
 If she wants to be a
@@ -11,10 +12,24 @@ If she wants to go
 If she wants to eat
 If she wants to do
 If she wants to be
+She wants
+She wants to
+She wants to go for a
+She wants to go for an
+She wants to see a
+She wants to eat a
+She wants to eat an
+She wants to be a
+She wants to be an
+She wants to go
+She wants to eat
+She wants to do
+She wants to be
 Do you want
 Do you want to
 Do you want to go for a
 Do you want to go for an
+Do you want to see a
 Do you want to eat a
 Do you want to eat an
 Do you want to be a
@@ -46,6 +61,7 @@ Homework
 Soccer
 Shopping
 Jogging
+Movie
 
 
 QUESTION
@@ -53,13 +69,13 @@ What she thinks about
 What she thinks of
 What she wants for
 What she likes
-
 What do you think about
 What do you think of
 What do you want for
 Do you like
 How was
 How her
+How is
 How
 about
 
@@ -78,6 +94,7 @@ Movie
 Movies
 This
 That
+Life
 
 
 CATCHALL

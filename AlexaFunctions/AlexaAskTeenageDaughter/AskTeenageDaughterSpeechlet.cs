@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using AlexaSkillsKit.Speechlet;
 using AlexaSkillsKit.UI;
 using AlexaSkillsKit.Slu;
+using System.Collections.Generic;
 
 
 namespace AlexaFunctions
@@ -32,21 +33,23 @@ namespace AlexaFunctions
         #region Public Overrides
         public override async Task OnSessionStartedAsync(SessionStartedRequest request, Session session)
         {
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
+            Task t = AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
             Logger.Info($"OnSessionStarted requestId={request.RequestId}, sessionId={session.SessionId}");
+            await t;
         }
 
         public override async Task OnSessionEndedAsync(SessionEndedRequest request, Session session)
         {
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
+            Task t = AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
             Logger.Info($"OnSessionStarted requestId={request.RequestId}, sessionId={session.SessionId}");
+            await t;
         }
 
         public override async Task<SpeechletResponse> OnLaunchAsync(LaunchRequest request, Session session)
         {
             try
             {
-                AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
+                await AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
             }
             catch (Exception ex)
             {
@@ -63,8 +66,9 @@ namespace AlexaFunctions
             string intentName = (intent != null) ? intent.Name : null;
 
             Logger.Info($"OnIntent intentName={intentName} requestId={request.RequestId}, sessionId={session.SessionId}");
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(session));
+            var tasks = new List<Task>();
+            tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request)));
+            tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(session)));
             
 
             // Note: If the session is started with an intent, no welcome message will be rendered;
@@ -72,6 +76,12 @@ namespace AlexaFunctions
 
             switch (intentName)
             {
+                case "AMAZON.CancelIntent":
+                    return await BuildAskTeenageDaughterExitResponseAsync(intent, session);
+                case "AMAZON.StopIntent":
+                    return await BuildAskTeenageDaughterExitResponseAsync(intent, session);
+                case "AMAZON.HelpIntent":
+                    return await BuildAskTeenageDaughterHelpResponseAsync(intent, session);
                 case "AskTeenageDaughterOpinion":
                     return await BuildAskTeenageDaughterOpinionResponseAsync(intent, session);
                 case "AskTeenageDaughterParticipation":
@@ -138,6 +148,17 @@ namespace AlexaFunctions
         private async Task<SpeechletResponse> BuildAskTeenageDaughterStatusResponseAsync(Intent intent, Session session)
         {
             string speechOutput = "Growl";
+            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
+        }
+        private async Task<SpeechletResponse> BuildAskTeenageDaughterExitResponseAsync(Intent intent, Session session)
+        {
+            string speechOutput = "Whatever";
+            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, true);
+        }
+        private async Task<SpeechletResponse> BuildAskTeenageDaughterHelpResponseAsync(Intent intent, Session session)
+        {
+            string speechOutput =
+                "Talk to me like a teenager.\n Ask me about my day.\n Say something like\nGood Morning.\nDo you want to go to soccer?\n How is life?";
             return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
         }
     }

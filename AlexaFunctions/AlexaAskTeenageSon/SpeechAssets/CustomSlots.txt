@@ -3,6 +3,7 @@ If he wants
 If he wants to
 If he wants to go for a
 If he wants to go for an
+If he wants to see a
 If he wants to eat a
 If he wants to eat an
 If he wants to be a
@@ -11,10 +12,24 @@ If he wants to go
 If he wants to eat
 If he wants to do
 If he wants to be
+He wants
+He wants to
+He wants to go for a
+He wants to go for an
+He wants to see a
+He wants to eat a
+He wants to eat an
+He wants to be a
+He wants to be an
+He wants to go
+He wants to eat
+He wants to do
+He wants to be
 Do you want
 Do you want to
 Do you want to go for a
 Do you want to go for an
+Do you want to see a
 Do you want to eat a
 Do you want to eat an
 Do you want to be a
@@ -46,6 +61,7 @@ Homework
 Soccer
 Shopping
 Baseball
+Movie
 
 
 QUESTION
@@ -58,7 +74,8 @@ What do you think of
 What do you want for
 Do you like
 How was
-How her
+How is
+How his
 How
 about
 
@@ -73,6 +90,7 @@ Class
 School
 Practice
 Movie
+Life
 This
 That
 Movies

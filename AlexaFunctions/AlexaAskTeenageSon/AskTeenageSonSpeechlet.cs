@@ -8,6 +8,7 @@ using AlexaSkillsKit.UI;
 using AlexaSkillsKit.Slu;
 using AlexaSkillsKit.Authentication;
 using AlexaSkillsKit.Json;
+using System.Collections.Generic;
 
 namespace AlexaFunctions
 {
@@ -33,19 +34,28 @@ namespace AlexaFunctions
         #region Public Overrides
         public override async Task OnSessionStartedAsync(SessionStartedRequest request, Session session)
         {
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
+            Task t = AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
             Logger.Info($"OnSessionStarted requestId={request.RequestId}, sessionId={session.SessionId}");
+            await t;
         }
 
         public override async Task OnSessionEndedAsync(SessionEndedRequest request, Session session)
         {
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
+            Task t = AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
             Logger.Info($"OnSessionStarted requestId={request.RequestId}, sessionId={session.SessionId}");
+            await t;
         }
 
         public override async Task<SpeechletResponse> OnLaunchAsync(LaunchRequest request, Session session)
         {
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
+            try
+            {
+                await AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"Exception: {ex.ToString()}");
+            }
             Logger.Info($"OnSessionStarted requestId={request.RequestId}, sessionId={session.SessionId}");
             return await GetWelcomeResponseAsync();
         }
@@ -57,15 +67,21 @@ namespace AlexaFunctions
             string intentName = (intent != null) ? intent.Name : null;
 
             Logger.Info($"OnIntent intentName={intentName} requestId={request.RequestId}, sessionId={session.SessionId}");
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
-            AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(session));
-
+            var tasks = new List<Task>();
+            tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request)));
+            tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(session)));
 
             // Note: If the session is started with an intent, no welcome message will be rendered;
             // rather, the intent specific response will be returned.
 
             switch (intentName)
             {
+                case "AMAZON.CancelIntent":
+                    return await BuildAskTeenageSonExitResponseAsync(intent, session);
+                case "AMAZON.StopIntent":
+                    return await BuildAskTeenageSonExitResponseAsync(intent, session);
+                case "AMAZON.HelpIntent":
+                    return await BuildAskTeenageSonHelpResponseAsync(intent, session);
                 case "AskTeenageSonOpinion":
                     return await BuildAskTeenageSonOpinionResponseAsync(intent, session);
                 case "AskTeenageSonParticipation":
@@ -137,6 +153,17 @@ namespace AlexaFunctions
         private async Task<SpeechletResponse> BuildAskTeenageSonStatusResponseAsync(Intent intent, Session session)
         {
             string speechOutput = "You're being rediculous.";
+            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
+        }
+        private async Task<SpeechletResponse> BuildAskTeenageSonExitResponseAsync(Intent intent, Session session)
+        {
+            string speechOutput = "Whatever";
+            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, true);
+        }
+        private async Task<SpeechletResponse> BuildAskTeenageSonHelpResponseAsync(Intent intent, Session session)
+        {
+            string speechOutput =
+                "Talk to me like a teenager.\n Ask me about my day.\n Say something like\nGood Morning.\nDo you want to go to soccer?\n How is life?";
             return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
         }
     }
