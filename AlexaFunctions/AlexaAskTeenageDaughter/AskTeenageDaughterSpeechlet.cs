@@ -69,10 +69,10 @@ namespace AlexaFunctions
             var tasks = new List<Task>();
             tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request)));
             tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(session)));
-            
+
 
             // Note: If the session is started with an intent, no welcome message will be rendered;
-            // rather, the intent specific response will be returned.
+            // but, the intent specific response will be returned and the session terminated.
 
             switch (intentName)
             {
@@ -99,7 +99,7 @@ namespace AlexaFunctions
         {
             // Create the welcome message.
             string speechOutput =
-                "Say something like\nGood Morning.\nDo you want to go to soccer?\n What do you think of jogging?";
+                "Say something like\nGo to bed.\nAre you ready for school?\n What do you think of jogging?\n You can also ask for help.";
 
             // Here we are setting shouldEndSession to false to not end the session and
             // prompt the user for input
@@ -127,14 +127,14 @@ namespace AlexaFunctions
         private async Task<SpeechletResponse> BuildAskTeenageDaughterOpinionResponseAsync(Intent intent, Session session)
         {            
             if (string.IsNullOrEmpty(intent.Slots["Subject"].Value))
-                return await BuildSpeechletResponseAsync(intent.Name, intent.Slots["Question"].Value, false);
+                return await BuildSpeechletResponseAsync(intent.Name, intent.Slots["Question"].Value, session.IsNew);
             else
             {
                 string subject = intent.Slots["Subject"].Value;
                 string speechOutput = (PROTECTEDWORDS.Contains(subject)) ?
                     $"{subject} rules." :
                     $"{subject} sucks.";
-                return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
+                return await BuildSpeechletResponseAsync(intent.Name, speechOutput, session.IsNew);
             }
         }
         private async Task<SpeechletResponse> BuildAskTeenageDaughterParticipationResponseAsync(Intent intent, Session session)
@@ -143,12 +143,12 @@ namespace AlexaFunctions
             string speechOutput = (PROTECTEDWORDS.Contains(activity)) ?
                 $"{activity} rules." :
                 $"{activity} sucks.";
-            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
+            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, session.IsNew);
         }
         private async Task<SpeechletResponse> BuildAskTeenageDaughterStatusResponseAsync(Intent intent, Session session)
         {
             string speechOutput = "Growl";
-            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
+            return await BuildSpeechletResponseAsync(intent.Name, speechOutput, session.IsNew);
         }
         private async Task<SpeechletResponse> BuildAskTeenageDaughterExitResponseAsync(Intent intent, Session session)
         {
@@ -158,7 +158,8 @@ namespace AlexaFunctions
         private async Task<SpeechletResponse> BuildAskTeenageDaughterHelpResponseAsync(Intent intent, Session session)
         {
             string speechOutput =
-                "Talk to me like a teenager.\n Ask me about my day.\n Say something like\nGood Morning.\nDo you want to go to soccer?\n How is life?";
+                "Talk to me like a teenager.\n Ask me about my day.\n Say something like\nGood Morning.\nDo you want to go to soccer?\n How is life?\n" +
+                " Just like a real teenager, I'll continue to respond to additional questions until you tell me to stop, cancel, or ignore me for a while.";
             return await BuildSpeechletResponseAsync(intent.Name, speechOutput, false);
         }
     }
