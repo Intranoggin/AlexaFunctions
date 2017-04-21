@@ -184,6 +184,7 @@
     <Content Include="AlexaAskTeenager\project.json" />
     <Content Include="AlexaAskTeenager\readme.md" />
     <Content Include="AlexaAskTeenager\CommonSpeechAssets\IntentSchema.json" />
+    <Content Include="proxies.json" />
     <None Include="Properties\PublishProfiles\IntranogginAlexaDevApp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\IntranogginAlexaDevApp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace AlexaFunctions
 {
-    public class AskTeenageDaughterSpeechlet : SpeechletAsync
+    public class AskTeenagerSpeechlet : SpeechletAsync
     {
         #region Constants and Private Members
         const string PROTECTEDWORDS = "mom, mother, mommy, dad, father, daddy";
@@ -23,10 +23,10 @@ namespace AlexaFunctions
         #endregion
 
         #region Constructor
-        public AskTeenageDaughterSpeechlet(TraceWriter log, IAsyncCollector<string> alexaAskTeenageRequestQueue)
+        public AskTeenagerSpeechlet(TraceWriter log, IAsyncCollector<string> alexaAskTeenagerRequestQueue)
         {
             Logger = log;
-            AskTeenageQueue = alexaAskTeenageRequestQueue;
+            AskTeenageQueue = alexaAskTeenagerRequestQueue;
         }
         #endregion
 

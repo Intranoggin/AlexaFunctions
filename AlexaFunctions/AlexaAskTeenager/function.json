@@ -16,7 +16,7 @@
     },
     {
       "type": "queue",
-      "name": "alexaAskTeenageRequestQueue",
+      "name": "alexaAskTeenagerRequestQueue",
       "queueName": "alexaaskteenagerequestqueue",
       "connection": "intranogginalexastorageaccount",
       "direction": "out"

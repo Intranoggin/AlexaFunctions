@@ -10,7 +10,7 @@
       "intent": "AMAZON.HelpIntent"
     },
     {
-      "intent": "AskTeenageDaughterParticipation",
+      "intent": "AskTeenagerParticipation",
       "slots": [
         {
           "name": "Query",
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "intent": "AskTeenageDaughterOpinion",
+      "intent": "AskTeenagerOpinion",
       "slots": [
         {
           "name": "Question",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "intent": "AskTeenageDaughterStatus",
+      "intent": "AskTeenagerStatus",
       "slots": [
         {
           "name": "CatchAll",

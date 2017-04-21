@@ -1,0 +1,18 @@
+﻿{
+  "proxies": {
+    "AlexaAskTeenageDaughter": {
+      "matchCondition": {
+        "methods": [ "POST" ],
+        "route": "/AskTeenageDaughter"
+      },
+      "backendUri": "%AlexaAskTeenagerURL%"
+    },
+    "AlexaAskTeenageSon": {
+      "matchCondition": {
+        "methods": [ "POST" ],
+        "route": "/AskTeenageSon"
+      },
+      "backendUri": "%AlexaAskTeenagerURL%"
+    }
+  }
+}
