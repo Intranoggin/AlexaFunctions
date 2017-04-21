@@ -21,13 +21,15 @@ namespace AlexaFunctions
         #region Properties
         public TraceWriter Logger { get; set; }
         public IAsyncCollector<string> AskTeenageQueue { get; set; }
+        public string CardTitle { get; set; }
         #endregion
 
         #region Constructor
-        public AskTeenagerSpeechlet(TraceWriter log, IAsyncCollector<string> alexaAskTeenagerRequestQueue)
+        public AskTeenagerSpeechlet(TraceWriter log, IAsyncCollector<string> alexaAskTeenagerRequestQueue, string cardTitle)
         {
             Logger = log;
             AskTeenageQueue = alexaAskTeenagerRequestQueue;
+            CardTitle = cardTitle;
         }
         #endregion
 
@@ -104,7 +106,7 @@ namespace AlexaFunctions
 
             // Here we are setting shouldEndSession to false to not end the session and
             // prompt the user for input
-            return await BuildSpeechletResponseAsync("Ask Teenager", speechOutput, false);
+            return await BuildSpeechletResponseAsync(CardTitle, speechOutput, false);
         }
         private async Task<SpeechletResponse> BuildSpeechletResponseAsync(string title, string output, bool shouldEndSession)
         {
@@ -129,14 +131,14 @@ namespace AlexaFunctions
         private async Task<SpeechletResponse> BuildAskTeenagerOpinionResponseAsync(Intent intent, Session session)
         {            
             if (string.IsNullOrEmpty(intent.Slots["Subject"].Value))
-                return await BuildSpeechletResponseAsync("Ask Teenager", intent.Slots["Question"].Value, session.IsNew);
+                return await BuildSpeechletResponseAsync(CardTitle, intent.Slots["Question"].Value, session.IsNew);
             else
             {
                 string subject = intent.Slots["Subject"].Value;
                 string speechOutput = (PROTECTEDWORDS.Contains(subject)) ?
                     $"{subject} rules." :
                     $"{subject} sucks.";
-                return await BuildSpeechletResponseAsync("Ask Teenager", speechOutput, session.IsNew);
+                return await BuildSpeechletResponseAsync(CardTitle, speechOutput, session.IsNew);
             }
         }
         private async Task<SpeechletResponse> BuildAskTeenagerParticipationResponseAsync(Intent intent, Session session)
@@ -145,24 +147,24 @@ namespace AlexaFunctions
             string speechOutput = (PROTECTEDWORDS.Contains(activity)) ?
                 $"{activity} rules." :
                 $"{activity} sucks.";
-            return await BuildSpeechletResponseAsync("Ask Teenager", speechOutput, session.IsNew);
+            return await BuildSpeechletResponseAsync(CardTitle, speechOutput, session.IsNew);
         }
         private async Task<SpeechletResponse> BuildAskTeenagerStatusResponseAsync(Intent intent, Session session)
         {
             string speechOutput = "Growl";
-            return await BuildSpeechletResponseAsync("Ask Teenager", speechOutput, session.IsNew);
+            return await BuildSpeechletResponseAsync(CardTitle, speechOutput, session.IsNew);
         }
         private async Task<SpeechletResponse> BuildAskTeenagerExitResponseAsync(Intent intent, Session session)
         {
             string speechOutput = "Whatever";
-            return await BuildSpeechletResponseAsync("Ask Teenager", speechOutput, true);
+            return await BuildSpeechletResponseAsync(CardTitle, speechOutput, true);
         }
         private async Task<SpeechletResponse> BuildAskTeenagerHelpResponseAsync(Intent intent, Session session)
         {
             string speechOutput =
                 "Talk to me like a teenager.\n Ask me about my day.\n Say something like\nGood Morning.\nDo you want to go to soccer?\n How is life?\n" +
                 " Just like a real teenager, I'll continue to respond to additional questions until you tell me to stop, cancel, or ignore me for a while.";
-            return await BuildSpeechletResponseAsync("Ask Teenager", speechOutput, false);
+            return await BuildSpeechletResponseAsync(CardTitle, speechOutput, false);
         }
     }
 #endregion

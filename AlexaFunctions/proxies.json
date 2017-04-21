@@ -5,14 +5,14 @@
         "methods": [ "POST" ],
         "route": "/AskTeenageDaughter"
       },
-      "backendUri": "%AlexaAskTeenagerURL%"
+      "backendUri": "%AlexaAskTeenagerURL%&type=daughter"
     },
     "AlexaAskTeenageSon": {
       "matchCondition": {
         "methods": [ "POST" ],
         "route": "/AskTeenageSon"
       },
-      "backendUri": "%AlexaAskTeenagerURL%"
+      "backendUri": "%AlexaAskTeenagerURL%&type=son"
     }
   }
 }
