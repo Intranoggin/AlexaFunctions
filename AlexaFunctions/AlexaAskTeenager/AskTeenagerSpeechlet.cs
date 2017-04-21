@@ -77,17 +77,17 @@ namespace AlexaFunctions
             switch (intentName)
             {
                 case "AMAZON.CancelIntent":
-                    return await BuildAskTeenageDaughterExitResponseAsync(intent, session);
+                    return await BuildAskTeenagerExitResponseAsync(intent, session);
                 case "AMAZON.StopIntent":
-                    return await BuildAskTeenageDaughterExitResponseAsync(intent, session);
+                    return await BuildAskTeenagerExitResponseAsync(intent, session);
                 case "AMAZON.HelpIntent":
-                    return await BuildAskTeenageDaughterHelpResponseAsync(intent, session);
-                case "AskTeenageDaughterOpinion":
-                    return await BuildAskTeenageDaughterOpinionResponseAsync(intent, session);
-                case "AskTeenageDaughterParticipation":
-                    return await BuildAskTeenageDaughterParticipationResponseAsync(intent, session);
-                case "AskTeenageDaughterStatus":
-                    return await BuildAskTeenageDaughterStatusResponseAsync(intent, session);
+                    return await BuildAskTeenagerHelpResponseAsync(intent, session);
+                case "AskTeenagerOpinion":
+                    return await BuildAskTeenagerOpinionResponseAsync(intent, session);
+                case "AskTeenagerParticipation":
+                    return await BuildAskTeenagerParticipationResponseAsync(intent, session);
+                case "AskTeenagerStatus":
+                    return await BuildAskTeenagerStatusResponseAsync(intent, session);
                 default:
                     throw new SpeechletException("Invalid Intent");
             }
@@ -124,7 +124,7 @@ namespace AlexaFunctions
             return response;
         }
 
-        private async Task<SpeechletResponse> BuildAskTeenageDaughterOpinionResponseAsync(Intent intent, Session session)
+        private async Task<SpeechletResponse> BuildAskTeenagerOpinionResponseAsync(Intent intent, Session session)
         {            
             if (string.IsNullOrEmpty(intent.Slots["Subject"].Value))
                 return await BuildSpeechletResponseAsync(intent.Name, intent.Slots["Question"].Value, session.IsNew);
@@ -137,7 +137,7 @@ namespace AlexaFunctions
                 return await BuildSpeechletResponseAsync(intent.Name, speechOutput, session.IsNew);
             }
         }
-        private async Task<SpeechletResponse> BuildAskTeenageDaughterParticipationResponseAsync(Intent intent, Session session)
+        private async Task<SpeechletResponse> BuildAskTeenagerParticipationResponseAsync(Intent intent, Session session)
         {
             string activity = intent.Slots["Activity"].Value;
             string speechOutput = (PROTECTEDWORDS.Contains(activity)) ?
@@ -145,17 +145,17 @@ namespace AlexaFunctions
                 $"{activity} sucks.";
             return await BuildSpeechletResponseAsync(intent.Name, speechOutput, session.IsNew);
         }
-        private async Task<SpeechletResponse> BuildAskTeenageDaughterStatusResponseAsync(Intent intent, Session session)
+        private async Task<SpeechletResponse> BuildAskTeenagerStatusResponseAsync(Intent intent, Session session)
         {
             string speechOutput = "Growl";
             return await BuildSpeechletResponseAsync(intent.Name, speechOutput, session.IsNew);
         }
-        private async Task<SpeechletResponse> BuildAskTeenageDaughterExitResponseAsync(Intent intent, Session session)
+        private async Task<SpeechletResponse> BuildAskTeenagerExitResponseAsync(Intent intent, Session session)
         {
             string speechOutput = "Whatever";
             return await BuildSpeechletResponseAsync(intent.Name, speechOutput, true);
         }
-        private async Task<SpeechletResponse> BuildAskTeenageDaughterHelpResponseAsync(Intent intent, Session session)
+        private async Task<SpeechletResponse> BuildAskTeenagerHelpResponseAsync(Intent intent, Session session)
         {
             string speechOutput =
                 "Talk to me like a teenager.\n Ask me about my day.\n Say something like\nGood Morning.\nDo you want to go to soccer?\n How is life?\n" +
