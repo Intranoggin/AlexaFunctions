@@ -4,7 +4,7 @@ Short Skill Description
 Use Alexa to communicate with your teenage daughter even when she isn't home. How is life? Life sucks.
 
 Full Skill Description
-Sometimes my teenagers are away from home. When that happens I have nobody around to tell me just how terrible everything is. Some unfortunate people don't ever have a teenager around. How can they possibly know life is terrible? The Teenage Daughter skill can help. 
+Sometimes your teenagers are away from home. When that happens how do you know just how terrible everything is? The Teenage Daughter skill can help. Launch Teenage Daughter and start asking her questions.
 
 Example Phrases
 Alexa, ask Teenage Daughter how school was.
@@ -13,3 +13,6 @@ Alexa, tell Teenage Daughter Good Morning.
 
 Keywords
 Teenage Daughter Attitude Girl Parent Humor Mom Dad Joke
+
+Testing Instructions
+No special equipment or account setup is required. If the skill is launched with an intent, "Alexa ask Teenage Daughter how school was", she will respond and immediately close the session. If the skill is launched without an intent, "Alexa, open Teenage Daughter", the skill will keep the session open for an ongoing dialog where the user can continue to ask question after question. In this case, the session is not closed until the user gives the cancel intent.
