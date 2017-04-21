@@ -7,7 +7,8 @@ using AlexaSkillsKit.Speechlet;
 using AlexaSkillsKit.UI;
 using AlexaSkillsKit.Slu;
 using System.Collections.Generic;
-
+using System.Text;
+using System.Globalization;
 
 namespace AlexaFunctions
 {
@@ -109,8 +110,9 @@ namespace AlexaFunctions
         {
             // Create the Simple card content.
             SimpleCard card = new SimpleCard();
-            card.Title = title;            
-            card.Content = output;
+            card.Title = title;
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;            
+            card.Content = textInfo.ToTitleCase(output);
 
             // Create the plain text output.
             PlainTextOutputSpeech speech = new PlainTextOutputSpeech();            
