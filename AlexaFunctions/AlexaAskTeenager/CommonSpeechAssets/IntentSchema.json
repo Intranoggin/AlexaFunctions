@@ -10,19 +10,6 @@
       "intent": "AMAZON.HelpIntent"
     },
     {
-      "intent": "AskTeenagerParticipation",
-      "slots": [
-        {
-          "name": "Query",
-          "type": "QUERY"
-        },
-        {
-          "name": "Activity",
-          "type": "ACTIVITY"
-        }
-      ]
-    },
-    {
       "intent": "AskTeenagerOpinion",
       "slots": [
         {

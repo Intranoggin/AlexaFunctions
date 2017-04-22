@@ -87,8 +87,6 @@ namespace AlexaFunctions
                     return await BuildAskTeenagerHelpResponseAsync(intent, session);
                 case "AskTeenagerOpinion":
                     return await BuildAskTeenagerOpinionResponseAsync(intent, session);
-                case "AskTeenagerParticipation":
-                    return await BuildAskTeenagerParticipationResponseAsync(intent, session);
                 case "AskTeenagerStatus":
                     return await BuildAskTeenagerStatusResponseAsync(intent, session);
                 default:
@@ -140,14 +138,6 @@ namespace AlexaFunctions
                     $"{subject} sucks.";
                 return await BuildSpeechletResponseAsync(CardTitle, speechOutput, session.IsNew);
             }
-        }
-        private async Task<SpeechletResponse> BuildAskTeenagerParticipationResponseAsync(Intent intent, Session session)
-        {
-            string activity = intent.Slots["Activity"].Value;
-            string speechOutput = (PROTECTEDWORDS.Contains(activity)) ?
-                $"{activity} rules." :
-                $"{activity} sucks.";
-            return await BuildSpeechletResponseAsync(CardTitle, speechOutput, session.IsNew);
         }
         private async Task<SpeechletResponse> BuildAskTeenagerStatusResponseAsync(Intent intent, Session session)
         {

@@ -1,7 +1,5 @@
 ﻿AskTeenagerStatus {CatchAll}
 
-AskTeenagerParticipation {Query} {Activity}
-
 AskTeenagerOpinion {Question} {Subject}
 AskTeenagerOpinion {Question} {Subject} was
 AskTeenagerOpinion {Question} {Subject} is

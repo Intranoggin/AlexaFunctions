@@ -1,4 +1,4 @@
-﻿QUERY
+﻿QUESTION
 If he wants
 If he wants to
 If he wants to go for a
@@ -78,19 +78,6 @@ be
 eat
 watch
 see
-
-ACTIVITY
-Dressed
-Bed
-Dinner
-Homework
-Soccer
-Shopping
-Jogging
-Movie
-
-
-QUESTION
 What she thinks about
 What she thinks of
 What she wants for
@@ -111,22 +98,25 @@ How
 about
 
 SUBJECT
+Dressed
+Bed
+Dinner
+Homework
+Soccer
+Shopping
+Jogging
+Movie
 Math
 English
 Gym
 Lunch
-Dinner
-Shopping
 Class
 School
 Practice
-Jogging
-Movie
 Movies
 This
 That
 Life
-
 
 CATCHALL
 What's up
