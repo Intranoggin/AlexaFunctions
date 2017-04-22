@@ -4,3 +4,10 @@ AskTeenagerOpinion {Question} {Subject}
 AskTeenagerOpinion {Question} {Subject} was
 AskTeenagerOpinion {Question} {Subject} is
 AskTeenagerOpinion {Question} {Subject} feels
+
+
+AskTeenagerOpinion {Question} {Actor}
+AskTeenagerOpinion {Question} {Artist}
+AskTeenagerOpinion {Question} {Athlete}
+AskTeenagerOpinion {Question} {Author}
+AskTeenagerOpinion {Question} {Book}

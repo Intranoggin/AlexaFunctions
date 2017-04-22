@@ -19,6 +19,26 @@
         {
           "name": "Subject",
           "type": "SUBJECT"
+        },
+        {
+          "name": "Actor",
+          "type": "AMAZON.Actor"
+        },
+        {
+          "name": "Artist",
+          "type": "AMAZON.Artist"
+        },
+        {
+          "name": "Athlete",
+          "type": "AMAZON.Athlete"
+        },
+        {
+          "name": "Author",
+          "type": "AMAZON.Author"
+        },
+        {
+          "name": "Book",
+          "type": "AMAZON.Book"
         }
       ]
     },

@@ -16,6 +16,7 @@ namespace AlexaFunctions
     {
         #region Constants and Private Members
         const string PROTECTEDWORDS = "mom, mother, mommy, dad, father, daddy";
+        string[] SUBJECTSLOTS = { "Actor", "Artist", "Athlete", "Author", "Book", "Subject" };
         #endregion
 
         #region Properties
@@ -127,17 +128,27 @@ namespace AlexaFunctions
         }
 
         private async Task<SpeechletResponse> BuildAskTeenagerOpinionResponseAsync(Intent intent, Session session)
-        {            
-            if (string.IsNullOrEmpty(intent.Slots["Subject"].Value))
+        {
+            var subject = GetSubjectFromAnySlot(intent);
+            if (string.IsNullOrEmpty(subject))
                 return await BuildSpeechletResponseAsync(CardTitle, intent.Slots["Question"].Value, session.IsNew);
             else
             {
-                string subject = intent.Slots["Subject"].Value;
                 string speechOutput = (PROTECTEDWORDS.Contains(subject)) ?
                     $"{subject} rules." :
                     $"{subject} sucks.";
                 return await BuildSpeechletResponseAsync(CardTitle, speechOutput, session.IsNew);
             }
+        }
+        private string GetSubjectFromAnySlot(Intent intent)
+        {
+            foreach(var slotName in SUBJECTSLOTS)
+            {
+                if (!string.IsNullOrEmpty(intent.Slots[slotName].Value))
+                    return intent.Slots[slotName].Value;
+
+            }
+            return string.Empty;
         }
         private async Task<SpeechletResponse> BuildAskTeenagerStatusResponseAsync(Intent intent, Session session)
         {
