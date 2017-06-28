@@ -81,8 +81,8 @@
     <Reference Include="NCrontab, Version=3.2.20120.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ncrontab.3.3.0\lib\net35\NCrontab.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -117,6 +117,9 @@
     <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -185,6 +188,9 @@
     <Content Include="AlexaAskTeenager\readme.md" />
     <Content Include="AlexaAskTeenager\CommonSpeechAssets\IntentSchema.json" />
     <Content Include="proxies.json" />
+    <Content Include="ProcessRequestQueueLog\function.json" />
+    <Content Include="ProcessRequestQueueLog\project.json" />
+    <Content Include="ProcessRequestQueueLog\readme.md" />
     <None Include="Properties\PublishProfiles\IntranogginAlexaDevApp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\IntranogginAlexaDevApp - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
@@ -206,6 +212,7 @@
     <Compile Include="AlexaAskTeenageSon_09\AskTeenageSon.cs" />
     <Compile Include="AlexaAskTeenageSon_09\AskTeenageSonSpeechlet.cs" />
     <Compile Include="AlexaHelloWorld\HelloWorld.cs" />
+    <Compile Include="ProcessRequestQueueLog\ProcessRequestQueueLog.cs" />
     <Compile Include="AlexaKeepAlive\KeepAlive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

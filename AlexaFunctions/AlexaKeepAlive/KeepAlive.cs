@@ -15,7 +15,8 @@ namespace AlexaFunctions
             WebClient wc = new WebClient();
 
             //log.Info($"AlexaAskTeenageDaughterURL: {System.Environment.GetEnvironmentVariable("AlexaAskTeenagerURL")}");
-            stream = await wc.OpenReadTaskAsync(System.Environment.GetEnvironmentVariable("AlexaAskTeenagerURL"));
+            string url = System.Environment.GetEnvironmentVariable("AlexaAskTeenagerURL") + "&type=daughter&BypassCode=" + System.Environment.GetEnvironmentVariable("BypassCode");            
+            stream = await wc.OpenReadTaskAsync(url);
             stream.Dispose();
         }
     }

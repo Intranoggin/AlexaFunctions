@@ -1,0 +1,21 @@
+﻿{
+  "disabled": false,
+  "scriptFile": "..\\bin\\AlexaFunctions.dll",
+  "entryPoint": "AlexaFunctions.ProcessRequestQueueLog.Run",
+  "bindings": [
+    {
+      "type": "queueTrigger",
+      "name": "queueItem",
+      "queueName": "alexaaskteenagerequestqueue",
+      "connection": "intranogginalexastorageaccount",
+      "direction": "in"
+    },
+    {
+      "name": "requestLog",
+      "type": "table",
+      "direction": "out",
+      "tableName": "alexaaskteenagerequesttable",
+      "connection": "intranogginalexastorageaccount"
+    }
+  ]
+}

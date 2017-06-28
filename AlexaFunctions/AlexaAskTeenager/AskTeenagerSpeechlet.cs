@@ -9,6 +9,8 @@ using AlexaSkillsKit.Slu;
 using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
+using AlexaSkillsKit.Authentication;
+using AlexaSkillsKit.Json;
 
 namespace AlexaFunctions
 {
@@ -23,6 +25,7 @@ namespace AlexaFunctions
         public TraceWriter Logger { get; set; }
         public IAsyncCollector<string> AskTeenageQueue { get; set; }
         public string CardTitle { get; set; }
+        public bool SkipValidation { get; set; }
         #endregion
 
         #region Constructor
@@ -31,10 +34,19 @@ namespace AlexaFunctions
             Logger = log;
             AskTeenageQueue = alexaAskTeenagerRequestQueue;
             CardTitle = cardTitle;
+            SkipValidation = false;
         }
         #endregion
 
         #region Public Overrides
+        public override bool OnRequestValidation(SpeechletRequestValidationResult result, DateTime referenceTimeUtc, SpeechletRequestEnvelope requestEnvelope)
+        {
+            if (SkipValidation)
+                return true;
+
+            return base.OnRequestValidation(result, referenceTimeUtc, requestEnvelope);
+        }
+
         public override async Task OnSessionStartedAsync(SessionStartedRequest request, Session session)
         {
             Task t = AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request));
@@ -70,9 +82,9 @@ namespace AlexaFunctions
             string intentName = (intent != null) ? intent.Name : null;
 
             Logger.Info($"OnIntent intentName={intentName} requestId={request.RequestId}, sessionId={session.SessionId}");
-            var tasks = new List<Task>();
-            tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request)));
-            tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(session)));
+            //var tasks = new List<Task>();
+            //tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(request)));
+            //tasks.Add(AskTeenageQueue.AddAsync(JsonConvert.SerializeObject(session)));
 
 
             // Note: If the session is started with an intent, no welcome message will be rendered;
