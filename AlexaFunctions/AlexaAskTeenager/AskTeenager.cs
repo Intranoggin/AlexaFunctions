@@ -15,7 +15,7 @@ namespace AlexaFunctions
         public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log, IAsyncCollector<string> alexaAskTeenagerRequestQueue)
         {
             log.Info($"Request={req}");
-
+            
             var queryParams = req.GetQueryNameValuePairs();
             string teenagerType = queryParams
                 .FirstOrDefault(q => string.Compare(q.Key, "type", true) == 0)
