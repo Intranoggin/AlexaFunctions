@@ -35,7 +35,7 @@ namespace AlexaFunctions
             var speechlet = new AskTeenagerSpeechlet(log, alexaAskTeenagerRequestQueue,cardTitle);
 
             string code = queryParams
-               .FirstOrDefault(q => string.Compare(q.Key, "Bypasscode", true) == 0)
+               .FirstOrDefault(q => string.Compare(q.Key, "BypassCode", true) == 0)
                .Value;
             
             if (!string.IsNullOrEmpty(code) && code == System.Environment.GetEnvironmentVariable("BypassCode"))
