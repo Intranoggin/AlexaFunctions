@@ -1,5 +1,5 @@
 ﻿{
-  "disabled": false,
+  "disabled": true,
   "scriptFile": "..\\bin\\AlexaFunctions.dll",
   "entryPoint": "AlexaFunctions.KeepAlive.Run",
   "bindings": [

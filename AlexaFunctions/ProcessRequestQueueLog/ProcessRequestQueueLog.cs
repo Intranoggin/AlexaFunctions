@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.Azure.WebJobs;
+using AlexaFunctions.Utilities;
 
 namespace AlexaFunctions
 {
@@ -28,47 +29,35 @@ namespace AlexaFunctions
         {
             log.Info($"[id:{id},insertionTime:{insertionTime},expirationTime:{expirationTime},nextVisibleTime:{nextVisibleTime},popReceipt:{popReceipt},dequeueCount:{dequeueCount},queueItem:{queueItem}");
 
-            (var isRequestLogEntry, var requestLogEntry) = DeserializeQueueObject(queueItem);
+            (var isHttpQueueObject, var httpQueueObject) = DeserializeQueueObject(queueItem);
 
-            if (isRequestLogEntry)
+            if (isHttpQueueObject)
             {
-
+                var requestLogEntry = new RequestLogEntry();
+                requestLogEntry.HTTPQueueObject = queueItem;
+                requestLogEntry.PartitionKey = "Version1Stage1";
+                requestLogEntry.RowKey = id;
+                requestLogEntry.QueueInsertion = insertionTime.ToUniversalTime().UtcDateTime;
+                requestLogEntry.RequestUrl = httpQueueObject.RequestUri.ToString();
+                requestLogEntry.ResponseIsSuccessStatusCode = httpQueueObject.ResponseIsSuccessStatusCode;
+                requestLogEntry.ResponseReasonPhrase = httpQueueObject.ResponseReasonPhrase;
+                requestLogEntry.ResponseStatusCode = httpQueueObject.ResponseStatusCode.ToString();
                 requestLog.Add(requestLogEntry);
-                    }
+            }
         }
 
-        public static(bool isRequestLogEntry, RequestLogEntry requestLogEntry)
+        public static(bool isHttpQueueObject, HttpQueueObject queueItem)
             DeserializeQueueObject(string queueItem)
         {
-            JsonSerializerSettings deserializationSettings = new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore };
-            JObject json = JsonConvert.DeserializeObject<JObject>(queueItem, deserializationSettings);
-
-            JObject request = json.Value<JObject>("Request");
-
-            //is not a request/response queue entry
-            if (request == null)
+            HttpQueueObject httpQueueObject = new HttpQueueObject();
+            JsonConvert.PopulateObject(queueItem, httpQueueObject, httpQueueObject.SerializationSettings);
+            
+            //is not a httpQueueObject queue entry
+            if (httpQueueObject == null)
                 return (false, null);
-
-            JObject respose = json.Value<JObject>("Response");
-
-            var requestLogEntry = new RequestLogEntry();
-
-            return (false,requestLogEntry);
+            
+            return (true, httpQueueObject);
             
         }
-    }
-    public class RequestLogEntry
-    {
-        public string PartitionKey { get; set; }
-        public string RowKey { get; set; }
-        public string Request { get; set; }
-        public string Response { get; set; }
-        public DateTime RequestDate { get; set; }
-        public string RequestType { get; set; }
-        public string Question { get; set; }
-        public string SlotName { get; set; }
-        public string SlotValue { get; set; }
-        public string ResponseText { get; set; }
-
     }
 }

@@ -14,7 +14,7 @@
       "name": "requestLog",
       "type": "table",
       "direction": "out",
-      "tableName": "alexaaskteenagerequesttable",
+      "tableName": "alexaAskTeenagerRequestTable",
       "connection": "intranogginalexastorageaccount"
     }
   ]

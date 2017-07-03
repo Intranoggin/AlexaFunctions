@@ -43,22 +43,11 @@ namespace AlexaFunctions
 
             var getResponse = await speechlet.GetResponseAsync(req);
 
-            //JsonSerializerSettings serializationSettings = new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
-            //var logObject = new LogObject(JsonConvert.SerializeObject(req, serializationSettings), JsonConvert.SerializeObject(getResponse, serializationSettings));
+            var logObject = new Utilities.HttpQueueObject(req, getResponse);            
+            var queueObject = JsonConvert.SerializeObject(logObject, logObject.SerializationSettings);
+            await alexaAskTeenagerRequestQueue.AddAsync(queueObject);
 
-            //var queueObject = JsonConvert.SerializeObject(logObject, serializationSettings);
-            //await alexaAskTeenagerRequestQueue.AddAsync(queueObject);
             return getResponse;
-        }
-    }
-    public class LogObject
-    {
-        public string Request { get; set; }
-        public string Response { get; set; }
-        public LogObject(string request, string response)
-        {
-            Request = request;
-            Response = response;
         }
     }
 }
